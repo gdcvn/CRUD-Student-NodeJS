@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='\node_modules\bootstrap\dist\css\bootstrap.min.css' />
+
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/classes">Brand</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="/classes">Quản lý lớp<span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="/students">Quản lý sinh viên</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+        <div class="panel panel-default">
+<div class="panel-heading">
+<h3 class="panel-title"><%= title %></h3>
+</div>
+<div class="panel-body">
+<form id="addForm" class="form-horizontal" action="/students/<%= student[0].ma %>?_method=DELETE" method="post" name="edit" enctype="multipart/form-data" novalidate="novalidate">
+<input type="hidden" name="anhhientai" value="<%= student[0].anh %>">   
+
+<div class="form-group">
+<label class="col-sm-4 control-label" for="ma">Mã số sinh viên</label>
+<div class="col-sm-5">
+<input value="PH<%= ("00000" + student[0].ma).slice(-5) %>" disabled type="text" class="form-control" id="ma" name="ma" placeholder="nhập họ tên">
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-4 control-label" for="tensv">Họ tên</label>
+<div class="col-sm-5">
+<input value="<%= student[0].ten %>" disabled type="text" class="form-control" id="tensv" name="tensv" placeholder="nhập họ tên">
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-4 control-label" for="avatar">Ảnh đại diện</label>
+<div class="col-sm-5">
+<img src="../<%= student[0].anh %>" alt="avatar" id="show" width="100px"/>
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-4 control-label" for="ngaysinh">Ngày sinh</label>
+<div class="col-sm-5">
+<input value="<%= student[0].ngaysinh %>" disabled type="date" class="form-control" id="ngaysinh" name="ngaysinh" >
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-4 control-label" for="gioitinh">Giới tính</label>
+<div class="col-sm-5"> 
+<input value="<%= student[0].gioitinh %>" type="text" disabled class="form-control" id="gioitinh" name="gioitinh">
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-4 control-label" for="lop">Lớp</label>
+<div class="col-sm-5">
+	<input value="PT<%= ("00000" + student[0].ma_lop).slice(-5) %>" disabled type="text" class="form-control" id="lop" name="lop">
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-4 control-label" for="diachi">Địa chỉ</label>
+<div class="col-sm-5">
+<input value="<%= student[0].diachi %>" type="text" disabled class="form-control" id="diachi" name="diachi" placeholder="địa chỉ">
+</div>
+</div>
+<div class="form-group">
+    <label class="col-sm-4 control-label"  >    </label>
+<div class="col-sm-5 alert alert-warning">
+    <strong>Warning!</strong> Xoá sinh viên PH<%= ("00000" + student[0].ma).slice(-5) %> - <%= student[0].ten %>.
+  </div>
+</div>
+<div class="form-group">
+<div class="col-sm-9 col-sm-offset-4">
+<button type="submit" class="btn btn-danger" name="del" value="del">Xoá</button>
+<a href="/students" class="btn btn-success" role="button">Không xoá</a>
+</div>
+</div>
+</form>
+</div>
+</div>
+    </div>
+
+    </body>
+</html>

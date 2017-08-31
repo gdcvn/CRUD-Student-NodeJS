@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='\node_modules\bootstrap\dist\css\bootstrap.min.css' />
+</head>
+
+<body>
+  <div class="container">
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/classes">Brand</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/classes">Quản lý lớp<span class="sr-only">(current)</span></a></li>
+        <li><a href="/students">Quản lý sinh viên</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+    <h1>
+      <%= title %>
+    </h1>
+    <a href="/classes/new" class="btn btn-default" role="button">Thêm lớp</a>
+    <br/><br/>
+    <table class="table table-bordered">
+      <thead>
+        <th>Mã lớp</th>
+        <th>Ngành học</th>
+        <th>Khoá học</th>
+        <th>Hành động</th>
+      </thead>
+      <tbody>
+              <%
+                if (classes.length > 0) {
+                for (var i = 0; i < classes.length; i++) {
+              %>
+          <tr>
+            <td>
+              PT<%= ("00000" + classes[i].ma_lop).slice(-5) %>
+            </td>
+            <td>
+              <%= classes[i].nganh_hoc %>
+            </td>
+            <td>
+              <%= classes[i].khoa %>
+            </td>
+            <td>
+              <a href="/classes/<%= classes[i].ma_lop %>/edit" class="btn btn-warning" role="button">Sửa</a>
+              <a href="/classes/<%= classes[i].ma_lop %>/delete" class="btn btn-danger" role="button">Xoá</a>
+              <a href="/students/<%= classes[i].ma_lop %>" class="btn btn-info" role="button">Danh sách sinh viên</a>
+            </td>
+          </tr>
+              <%
+                }} else {
+              %>
+              <tr>
+                <td colspan="4">Bạn chưa thêm lớp nào. Nhấn <a href="/classes/new" class="btn btn-default" role="button">Thêm lớp</a> để thêm 1 lớp mới.</td>
+              </tr>
+              <%
+                }
+              %>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>
